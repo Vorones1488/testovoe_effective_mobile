@@ -41,7 +41,7 @@ class JSONBookRepository(BookInterface):
         else:
             with open(self.path, "r", encoding="utf-8") as file:
                 book_json = json.load(file)
-            book_json.append(book.to_dict())
+            book_json.append(book.to_dict(to_bd=True))
 
             with open(self.path, "w", encoding="utf-8") as file:
                 json.dump(book_json, file, indent=4, ensure_ascii=False)
