@@ -23,9 +23,11 @@ class Book:
         self.year = year
         self.status = status
 
-    def to_dict(self) -> dict:
-        self.id = generete_id.create_id()
-        """создает словарь с полями модели"""
+    def to_dict(self, to_bd: bool = False) -> dict:
+        """Сreates a dictionary for input into the database"""
+        if to_bd:
+            self.id = generete_id.create_id()
+            """создает словарь с полями модели"""
         book_dict = {
             "id": self.id,
             "title": self.title,
@@ -34,6 +36,3 @@ class Book:
             "status": self.status,
         }
         return book_dict
-
-
-Book("id")

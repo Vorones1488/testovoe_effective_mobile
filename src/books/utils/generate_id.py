@@ -5,7 +5,7 @@ from itertools import count
 class GenerateID:
     count_id = 0
 
-    def __init__(self, id_path=" ./src/database/.lost_id"):
+    def __init__(self, id_path="./database/.lost_id"):
         self.id_path = id_path
 
     def create_id(self):
