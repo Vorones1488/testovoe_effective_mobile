@@ -36,7 +36,7 @@ class JSONBookRepository(BookInterface):
         if not os.path.exists(self.path):
             # Запись в файл только если он не существует.
             with open(self.path, "x", encoding="utf-8") as f:
-                json.dump([book.to_dict()], f, indent=4, ensure_ascii=False)
+                json.dump([book.to_dict(to_bd=True)], f, indent=4, ensure_ascii=False)
 
         else:
             with open(self.path, "r", encoding="utf-8") as file:
@@ -87,7 +87,8 @@ class JSONBookRepository(BookInterface):
                 book["status"] = status
                 with open(self.path, "w", encoding="utf-8") as file:
                     json.dump(book_json, file, indent=4, ensure_ascii=False)
+                return book
         except FileNotFoundError:
-            return False
+            raise {"error": "файл не найден"}
         except TypeError:
-            return False
+            raise {"error": "неверный тип"}

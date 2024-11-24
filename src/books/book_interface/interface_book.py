@@ -10,3 +10,6 @@ class BookInterface(InterfaceDatabase):
 
     async def get_key(self, search_object: Any, value: Any) -> AbstractModel:
         raise NotImplementedError
+
+    async def put(self, id: int, status: str) -> Any:
+        raise NotImplementedError
