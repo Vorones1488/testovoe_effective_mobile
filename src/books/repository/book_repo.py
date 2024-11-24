@@ -58,6 +58,7 @@ class JSONBookRepository(BookInterface):
             return Book(**book)
 
     async def get_all(self) -> List[Book]:
+        """Returns a list of books"""
 
         with open(self.path, "r", encoding="utf-8") as file:
             book_json = json.load(file)
@@ -65,6 +66,7 @@ class JSONBookRepository(BookInterface):
         return books
 
     async def dell_id(self, id: int) -> bool:
+        """Deletes a book ee id"""
         with open(self.path, "r", encoding="utf-8") as file:
             book_json = json.load(file)
             book = await binary_search(book_json, id)
@@ -77,6 +79,7 @@ class JSONBookRepository(BookInterface):
                 return False
 
     async def put(self, id: int, status: str) -> bool:
+        """Edits the status of a book by its id"""
         try:
             with open(self.path, "r", encoding="utf-8") as file:
                 book_json = json.load(file)
